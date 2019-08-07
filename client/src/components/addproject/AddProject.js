@@ -18,7 +18,7 @@ class AddProject extends Component {
     blah.append('theDescription', this.state.newDescription )
 
 
-    axios.post("http://localhost:5000/api/projects", blah, { headers: {
+    axios.post(`${process.env.REACT_APP_BASE}/projects`, blah, { headers: {
       'Content-Type': 'multipart/form-data',
     }, withCredentials: true })
     .then( () => {

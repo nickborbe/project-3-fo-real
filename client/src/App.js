@@ -33,7 +33,7 @@ class App extends React.Component {
   }
 
   getAllProjects = () => {
-    axios.get(`http://localhost:5000/api/projects`, {withCredentials: true})
+    axios.get(`${process.env.REACT_APP_BASE}/projects`, {withCredentials: true})
     .then(responseFromApi => {
       this.setState({
         listOfProjects: responseFromApi.data, ready: true
