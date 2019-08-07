@@ -75,9 +75,7 @@ app.use(cors({
 }));
 
 
-app.use((req, res, next) => {
-  res.sendFile(__dirname + "/public/index.html");
-});
+
 
 
 const projectRoutes = require('./routes/projectRoutes');
@@ -90,6 +88,10 @@ app.use('/api/tasks', taskRoutes);
 
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/auth', userRoutes);
+
+app.use((req, res, next) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 
 module.exports = app;
