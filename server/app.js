@@ -18,7 +18,7 @@ require('./config/passport-stuff');
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/todo-list-api', {useMongoClient: true})
+  .connect(process.env.MONGODB_URI, {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -71,8 +71,13 @@ app.use(passport.session());
 
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:3000', 'https://blah.herokuapp.com']
+  origin: ['http://localhost:3000']
 }));
+
+
+app.use((req, res, next) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 
 const projectRoutes = require('./routes/projectRoutes');
